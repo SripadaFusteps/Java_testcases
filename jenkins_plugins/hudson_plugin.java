@@ -55,7 +55,7 @@ import jenkins.model.GlobalConfiguration;
  * {@code @plugin} javadoc annotation, but that is no longer a requirement.
  *
  * @author Kohsuke Kawaguchi
- * @since 1.42
+ * 
  */
 public abstract class Plugin implements Saveable {
 
@@ -94,7 +94,7 @@ public abstract class Plugin implements Saveable {
      * @param context
      *      Always non-null.
      *
-     * @since 1.42
+     *
      */
     public void setServletContext(ServletContext context) {
     }
@@ -102,7 +102,7 @@ public abstract class Plugin implements Saveable {
     /**
      * Gets the paired {@link PluginWrapper}.
      *
-     * @since 1.426
+     * 
      */
     public PluginWrapper getWrapper() {
         return wrapper;
@@ -126,7 +126,7 @@ public abstract class Plugin implements Saveable {
      * @throws Exception
      *      any exception thrown by the plugin during the initialization will disable plugin.
      *
-     * @since 1.42
+     * 
      * @see ExtensionPoint
      * @see #postInitialize()
      */
@@ -154,13 +154,13 @@ public abstract class Plugin implements Saveable {
      *      each plugin author doesn't have to worry about catching an exception and
      *      recording it.
      *
-     * @since 1.42
+     * 
      */
     public void stop() throws Exception {
     }
 
     /**
-     * @since 1.233
+     * 
      * @deprecated as of 1.305 override {@link #configure(StaplerRequest,JSONObject)} instead
      */
     @Deprecated
@@ -192,7 +192,7 @@ public abstract class Plugin implements Saveable {
      * <p>
      * If you are using this method, you'll likely be interested in
      * using {@link #save()} and {@link #load()}.
-     * @since 1.305
+     * 
      */
     public void configure(StaplerRequest req, JSONObject formData) throws IOException, ServletException, FormException {
         configure(formData);
@@ -236,7 +236,7 @@ public abstract class Plugin implements Saveable {
      * <p>
      * If there was no previously persisted state, this method is no-op.
      *
-     * @since 1.245
+     * 
      */
     protected void load() throws IOException {
         XmlFile xml = getConfigXml();
@@ -247,7 +247,7 @@ public abstract class Plugin implements Saveable {
     /**
      * Saves serializable fields of this instance to the persisted storage.
      *
-     * @since 1.245
+     * 
      */
     public void save() throws IOException {
         if(BulkChange.contains(this))   return;
@@ -263,7 +263,7 @@ public abstract class Plugin implements Saveable {
      * This method can be also overridden if the plugin wants to
      * use a custom {@link XStream} instance to persist data.
      *
-     * @since 1.245
+     * 
      */
     protected XmlFile getConfigXml() {
         return new XmlFile(Jenkins.XSTREAM,
@@ -275,7 +275,7 @@ public abstract class Plugin implements Saveable {
      * Dummy instance of {@link Plugin} to be used when a plugin didn't
      * supply one on its own.
      *
-     * @since 1.321
+     * 
      */
     public static final class DummyImpl extends Plugin {}
 }
